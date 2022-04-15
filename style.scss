@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    border: 1px solid white;
+    font-family: 'Space Mono', monospace;
+    color: white;
+}
+
+body {
+    background: radial-gradient(circle, hsl(214, 47%, 23%), hsl(237, 49%, 15%));
+    height: 100%;
+}
+
+h1 {
+    width: 5rem;
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 13px;
+}
+
+.title-and-score {
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem;
+    padding: 1rem;
+    border-radius: 3px;
+    border: 2px solid hsl(217, 16%, 45%);
+}
+
+.score-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    border-radius: 3px;
+    min-width: 3rem;
+    font-weight: 700;
+    #score-text {
+        color: hsl(229, 64%, 46%);
+        font-size: .4rem;
+        letter-spacing: .1rem;
+    }
+    #score-number {
+        color: hsl(229, 25%, 31%);
+        font-size: 1.5rem;
+    }
+}
