@@ -1,5 +1,5 @@
 const root = document.getElementById('root');
-ReactDOM.render(<App />, root)
+ReactDOM.render(<App />, root);
 
 function App() {
     return (
@@ -12,7 +12,9 @@ function App() {
                 <Paper />
                 <Scissors />
                 <Rock />
+                <Triangle />
             </div>
+            <Rules />
         </>
     )
 }
@@ -36,7 +38,6 @@ function Rock() {
             <div className="white-background">
                 <img src="images/icon-rock.svg" alt="rock" />
             </div>
-            <Triangle />
         </button>
     )
 }
@@ -69,4 +70,8 @@ function Triangle() {
             <span id="base"></span>
         </div>
     )
+}
+
+function Rules() {
+    return <button id="rules">RULES</button>
 }
