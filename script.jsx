@@ -36,6 +36,7 @@ function Rock() {
             <div className="white-background">
                 <img src="images/icon-rock.svg" alt="rock" />
             </div>
+            <Triangle />
         </button>
     )
 }
@@ -57,5 +58,15 @@ function Scissors() {
                 <img src="images/icon-scissors.svg" alt="scissors" />
             </div>
         </button>
+    )
+}
+
+function Triangle() {
+    return (
+        <div className="triangle">
+            <span id="left"></span>
+            <span id="right"></span>
+            <span id="base"></span>
+        </div>
     )
 }

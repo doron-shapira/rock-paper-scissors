@@ -1,5 +1,15 @@
 @import url('https://fonts.googleapis.com/css2?family=Space+Mono&display=swap');
 
+@mixin triange-angles($angle) {
+    display: inline-block;
+    width: 15px;
+    height: 200px;
+    background-color: black;
+    opacity: 0.3;
+    transform: rotate($angle);
+    position: absolute;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -48,10 +58,10 @@ body { background: radial-gradient(circle, hsl(214, 47%, 23%), hsl(237, 49%, 15%
 }
 
 .choices {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3rem;
     .white-background {
         display: flex;
         justify-content: center;
@@ -65,6 +75,27 @@ body { background: radial-gradient(circle, hsl(214, 47%, 23%), hsl(237, 49%, 15%
     #rock { 
         background: linear-gradient(135deg, hsl(349, 71%, 52%), hsl(349, 70%, 56%));
         box-shadow: 0px 7px hsl(349, 65%, 38%);
+        position: relative;
+        .triangle {
+            position: absolute;
+            top: -30px;
+            right: 70px;
+            transform: rotate(180deg);
+            z-index: -1;
+            #left {
+                @include triange-angles(25deg);
+                top: -75px;
+                left: -60px;
+            }
+            #right {
+                @include triange-angles(-25deg);
+                top: -75px;
+                left: 60px;
+            }
+            #base {
+                @include triange-angles(90deg);
+            }
+        }
     }
     #paper {
         background: linear-gradient(135deg, hsl(230, 89%, 62%), hsl(230, 89%, 65%));
