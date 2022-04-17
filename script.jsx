@@ -73,5 +73,21 @@ function Triangle() {
 }
 
 function Rules() {
-    return <button id="rules">RULES</button>
+    const [isClicked, setIsClicked] = React.useState(false);
+    return (
+        <>
+            <button className="rules-btn" onClick={() => setIsClicked(true)}>RULES</button>
+            {isClicked && (
+                <div className="rules-modal">
+                    <div className="rules-and-x">
+                        <header>RULES</header>
+                        <button onClick={() => setIsClicked(false)}>
+                            <img src="images/icon-close.svg" alt="close-icon" />
+                        </button>
+                    </div>
+                    <img src="images/image-rules.svg" alt="rules" />
+                </div>
+            )}
+        </>
+    )
 }
