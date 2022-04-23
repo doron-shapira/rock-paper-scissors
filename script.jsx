@@ -2,7 +2,7 @@ const root = document.getElementById('root');
 ReactDOM.render(<App />, root);
 
 function App() {
-    const [hands, setHands] = React.useState({user: '', house: '', winner: ''});
+    const [hands, setHands] = React.useState({user: '', house: '', winner: '', score: 0});
 
     const handleReset = () => setHands({...hands, user: '', house: '', winner: ''});
 
@@ -19,14 +19,17 @@ function App() {
             houseHand = 'scissors';
 
         let winner;
+        let score = hands.score;
         if (userHand === houseHand)
             winner = 'draw';
-        else if (userHand === 'rock' && houseHand === 'scissors' || userHand === 'paper' && houseHand === 'rock' || userHand === 'scissors' && houseHand === 'paper')
+        else if (userHand === 'rock' && houseHand === 'scissors' || userHand === 'paper' && houseHand === 'rock' || userHand === 'scissors' && houseHand === 'paper') {
             winner = 'user';
+            score = hands.score + 1;
+        }
         else
             winner = 'house';
 
-        setHands({...hands, user: userHand, house: houseHand, winner: winner});
+        setHands({...hands, user: userHand, house: houseHand, winner: winner, score: score});
     }
 
     let userChoice;
@@ -63,10 +66,7 @@ function App() {
 
     return (
         <>
-            <div className="title-and-score">
-                <Title />
-                <Score />
-            </div>
+            <TitleAndScore score={hands.score} />
             <div className="choices">{currentState}</div>
             <MatchResult winner={hands.winner} handleReset={handleReset} />
             <Rules />
@@ -74,15 +74,14 @@ function App() {
     )
 }
 
-function Title() {
-    return <h1 className="title">ROCK PAPER SCISSORS</h1>
-}
-
-function Score() {
+function TitleAndScore({ score }) {
     return (
-        <div className="score-container">
-            <div id="score-text">SCORE</div>
-            <div id="score-number">0</div>
+        <div className="title-and-score">
+            <h1 className="title">ROCK PAPER SCISSORS</h1>
+            <div className="score-container">
+                <div id="score-text">SCORE</div>
+                <div id="score-number">{score}</div>
+            </div>
         </div>
     )
 }
