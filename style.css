@@ -220,16 +220,18 @@ body {
   font-size: 1.5rem;
   padding: .5rem 3rem;
   border-radius: 10px;
-  border: 2px solid #606e85;
+  border: none;
+  outline: 2px solid #606e85;
   cursor: pointer;
   color: inherit;
-  -webkit-transition: background-color .1s, color .1s;
-  transition: background-color .1s, color .1s;
+  -webkit-transition: background-color .1s, color .1s, outline .1s;
+  transition: background-color .1s, color .1s, outline .1s;
 }
 
 .rules-btn:hover, .rules-btn:focus {
   background-color: aliceblue;
   color: black;
+  outline: none;
 }
 
 .overlay {
@@ -290,5 +292,30 @@ body {
   -ms-flex-item-align: center;
       -ms-grid-row-align: center;
       align-self: center;
+}
+
+.match-result h2 {
+  font-size: 4rem;
+}
+
+.match-result button {
+  color: #3b4262;
+  font-size: 1.5rem;
+  font-weight: 700;
+  background-color: white;
+  border: none;
+  outline: none;
+  border-radius: 10px;
+  width: 100%;
+  padding: .5rem 0;
+  cursor: pointer;
+  -webkit-transition: background-color .1s, outline .1s, color .1s;
+  transition: background-color .1s, outline .1s, color .1s;
+}
+
+.match-result button:hover, .match-result button:focus {
+  background-color: transparent;
+  outline: 2px solid #606e85;
+  color: white;
 }
 /*# sourceMappingURL=style.css.map */

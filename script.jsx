@@ -2,7 +2,9 @@ const root = document.getElementById('root');
 ReactDOM.render(<App />, root);
 
 function App() {
-    const [hands, setHands] = React.useState({user: '', house: <></>});
+    const [hands, setHands] = React.useState({user: '', house: '', winner: ''});
+
+    const handleReset = () => setHands({...hands, user: '', house: '', winner: ''});
 
     const handleHands = userHand => {
         const randomNum = Math.random();
@@ -10,58 +12,63 @@ function App() {
         let houseHand;
 
         if (randomNum < 1/3)
-            houseHand = <Rock chosen='house' />;
+            houseHand = 'rock';
         else if (randomNum < 2/3)
-            houseHand = <Paper chosen='house' />;
+            houseHand = 'paper';
         else
-            houseHand = <Scissors chosen='house' />;
+            houseHand = 'scissors';
 
-        setHands({...hands, user: userHand, house: houseHand});
+        let winner;
+        if (userHand === houseHand)
+            winner = 'draw';
+        else if (userHand === 'rock' && houseHand === 'scissors' || userHand === 'paper' && houseHand === 'rock' || userHand === 'scissors' && houseHand === 'paper')
+            winner = 'user';
+        else
+            winner = 'house';
+
+        setHands({...hands, user: userHand, house: houseHand, winner: winner});
     }
 
     let userChoice;
     switch (hands.user) {
-        case 'rock':
-            userChoice = (
-                <>
-                    <Rock chosen='user' />
-                    {hands.house}
-                </>
-            );
-            break;
-        case 'paper':
-            userChoice = (
-                <>
-                    <Paper chosen='user' />
-                    {hands.house}
-                </>
-            );
-            break;
-        case 'scissors':
-            userChoice = (
-                <>
-                    <Scissors chosen='user' />
-                    {hands.house}
-                </>
-            )
-            break;
-        default:
-            userChoice = (
-                <>
-                    <Paper handleHands={handleHands} />
-                    <Scissors handleHands={handleHands} />
-                    <Rock handleHands={handleHands} />
-                    <Triangle />
-                </>
-            );
+        case 'rock': userChoice = <Rock chosen='user' />; break;
+        case 'paper': userChoice = <Paper chosen='user' />; break;
+        case 'scissors': userChoice = <Scissors chosen='user' />;
     }
+
+    let houseChoice;
+    switch(hands.house) {
+        case 'rock': houseChoice = <Rock chosen='house' />; break;
+        case 'paper': houseChoice = <Paper chosen='house' />; break;
+        case 'scissors': houseChoice = <Scissors chosen='house' />;
+    }
+
+    let currentState;
+    if (hands.user)
+        currentState = (
+            <>
+                {userChoice}
+                {houseChoice}
+            </>
+        );
+    else
+        currentState = (
+            <>
+                <Paper handleHands={handleHands} />
+                <Scissors handleHands={handleHands} />
+                <Rock handleHands={handleHands} />
+                <Triangle />
+            </>
+        );
+
     return (
         <>
             <div className="title-and-score">
                 <Title />
                 <Score />
             </div>
-            <div className="choices">{userChoice}</div>
+            <div className="choices">{currentState}</div>
+            <MatchResult winner={hands.winner} handleReset={handleReset} />
             <Rules />
         </>
     )
@@ -158,4 +165,22 @@ function Rules() {
             )}
         </>
     )
+}
+
+function MatchResult({ winner, handleReset }) {
+    if (winner) {
+        let result;
+        switch(winner) {
+            case 'user': result = 'YOU WIN'; break;
+            case 'house': result = 'YOU LOSE'; break;
+            case 'draw': result = 'DRAW';
+        }  
+        return (
+            <div className="match-result">
+                <h2>{result}</h2>
+                <button onClick={() => handleReset()}>PLAY AGAIN</button>
+            </div>
+        );
+    }
+    return null;
 }
