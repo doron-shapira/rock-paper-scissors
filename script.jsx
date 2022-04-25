@@ -24,7 +24,7 @@ function App() {
             winner = 'draw';
         else if (userHand === 'rock' && houseHand === 'scissors' || userHand === 'paper' && houseHand === 'rock' || userHand === 'scissors' && houseHand === 'paper') {
             winner = 'user';
-            score = hands.score + 1;
+            score++;
         }
         else
             winner = 'house';
