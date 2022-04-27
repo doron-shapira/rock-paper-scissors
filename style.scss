@@ -69,9 +69,11 @@ body { background: radial-gradient(circle, hsl(214, 47%, 23%), hsl(237, 49%, 15%
 .choices {
     display: flex;
     justify-content: center;
+    align-items: center;
     flex-wrap: wrap;
     gap: 3rem;
     max-width: 575px;
+    height: 368px;
     position: relative;
     .white-background {
         display: flex;
@@ -119,6 +121,7 @@ body { background: radial-gradient(circle, hsl(214, 47%, 23%), hsl(237, 49%, 15%
         display: flex;
         justify-content: center;
         align-items: center;
+        position: relative;
         border: 0;
         border-radius: 50%;
         width: 10rem;
@@ -195,7 +198,13 @@ body { background: radial-gradient(circle, hsl(214, 47%, 23%), hsl(237, 49%, 15%
 }
 
 .match-result {
-    h2 { font-size: 4rem; }
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    h2 { 
+        font-size: 4rem;
+        text-align: center;
+    }
     button {
         color: #3b4262;
         font-size: 1.5rem;
@@ -213,5 +222,12 @@ body { background: radial-gradient(circle, hsl(214, 47%, 23%), hsl(237, 49%, 15%
             outline: 2px solid hsl(217, 16%, 45%);
             color: white;
         }
+    }
+}
+
+@media (min-width: 430px) {
+    .rules-btn {
+        align-self: flex-end;
+        margin-right: 2rem;
     }
 }

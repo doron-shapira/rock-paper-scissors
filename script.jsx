@@ -4,12 +4,16 @@ ReactDOM.render(<App />, root);
 function App() {
     const [hands, setHands] = React.useState({user: '', house: '', winner: '', score: 0});
 
-    const handleReset = () => setHands({...hands, user: '', house: '', winner: ''});
+    const handleReset = () => {
+        setHands({...hands, user: '', house: '', winner: ''});
+        document.querySelector('.choices').style.maxWidth = '575px';
+    }
 
     const handleHands = userHand => {
         const randomNum = Math.random();
         console.log(randomNum);
         let houseHand;
+        document.querySelector('.choices').style.maxWidth = 'none';
 
         if (randomNum < 1/3)
             houseHand = 'rock';
@@ -51,7 +55,9 @@ function App() {
         currentState = (
             <>
                 {userChoice}
+                {screen.width >= 574 && <MatchResult winner={hands.winner} handleReset={handleReset} />}
                 {houseChoice}
+                {screen.width < 574 && <MatchResult winner={hands.winner} handleReset={handleReset} />}
             </>
         );
     else
@@ -68,7 +74,6 @@ function App() {
         <>
             <TitleAndScore score={hands.score} />
             <div className="choices">{currentState}</div>
-            <MatchResult winner={hands.winner} handleReset={handleReset} />
             <Rules />
         </>
     )
@@ -172,7 +177,7 @@ function MatchResult({ winner, handleReset }) {
         switch(winner) {
             case 'user': result = 'YOU WIN'; break;
             case 'house': result = 'YOU LOSE'; break;
-            case 'draw': result = 'DRAW';
+            case 'draw': result = 'YOU TIE';
         }  
         return (
             <div className="match-result">

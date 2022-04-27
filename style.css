@@ -92,10 +92,14 @@ body {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
   gap: 3rem;
   max-width: 575px;
+  height: 368px;
   position: relative;
 }
 
@@ -191,6 +195,7 @@ body {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  position: relative;
   border: 0;
   border-radius: 50%;
   width: 10rem;
@@ -295,8 +300,22 @@ body {
       align-self: center;
 }
 
+.match-result {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
 .match-result h2 {
   font-size: 4rem;
+  text-align: center;
 }
 
 .match-result button {
@@ -318,5 +337,13 @@ body {
   background-color: transparent;
   outline: 2px solid #606e85;
   color: white;
+}
+
+@media (min-width: 430px) {
+  .rules-btn {
+    -ms-flex-item-align: end;
+        align-self: flex-end;
+    margin-right: 2rem;
+  }
 }
 /*# sourceMappingURL=style.css.map */
